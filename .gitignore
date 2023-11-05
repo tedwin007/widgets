@@ -37,3 +37,5 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/src/schema/constants/__snapshots__/schem.map.spec.ts.snap
+/src/schema/constants/__snapshots__/schemas-def.const.spec.ts.snap
