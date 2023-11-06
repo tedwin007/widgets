@@ -1,6 +1,6 @@
 {
   "name": "widget-manger",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "scripts": {
     "lint:fix": "nx run widgets:lint --parallel --skip-nx-cache --fix --reportUnusedDisableDirectives=error",
