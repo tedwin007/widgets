@@ -1,13 +1,13 @@
 {
   "name": "@tedwin007/widgets",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "license": "MIT",
   "scripts": {
     "lint:fix": "nx run widgets:lint --parallel --skip-nx-cache --fix --reportUnusedDisableDirectives=error",
     "start": "nx serve",
     "build": "nx build",
     "build:watch": "nx build",
-    "publish": "npm version patch --force && npm pack",
+    "publish": "npm version patch --force && cd dist/widgets && npm pack",
     "prepublish": "npm run test && npm run lint:fix && npm run build",
     "test": "nx run widgets:test --with-deps --parallel --skip-nx-cache --codeCoverage=true",
     "test:watch": "nx run widgets:test --with-deps --parallel --skip-nx-cache --watch --codeCoverage=true"
