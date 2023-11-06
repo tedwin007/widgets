@@ -20,7 +20,6 @@ export class WidgetManager {
      * Converts a BaseWidget instance from JSON representation to a Widget.
      * @param {BaseWidget} widget - The BaseWidget instance to convert.
      * @param {WidgetSchema} WidgetSchema - The schema name for validation.
-     * @param {object} [schema] - Optional validation schema.
      * @returns {FromJsonResponse} An object containing the Widget instance and attachRender method.
      */
     fromJson(
@@ -32,7 +31,6 @@ export class WidgetManager {
      * Converts a BaseWidget instance from JSON representation to a Widget.
      * @param {BaseWidget} widget - The BaseWidget instance to convert.
      * @param {WidgetSchema} WidgetSchema - The schema name for validation.
-     * @param {object} [schema] - Optional validation schema.
      * @returns {FromJsonResponse} An object containing the Widget instance and attachRender method.
      */
     fromJson(
