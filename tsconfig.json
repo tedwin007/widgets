@@ -14,7 +14,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@widgets/source": ["src/index.ts"]
+      "@widgets": ["src/lib/widgets.ts"]
     }
   },
   "files": [],

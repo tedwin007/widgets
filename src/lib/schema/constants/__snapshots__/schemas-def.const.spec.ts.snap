@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateWidgetSchema should match the validation result for incorrect data - missing config 1`] = `
+{
+  "errors": [
+    {
+      "dataPath": "",
+      "keyword": "required",
+      "message": "should have required property '.config'",
+      "params": {
+        "missingProperty": ".config",
+      },
+      "schemaPath": "#/required",
+    },
+  ],
+  "valid": false,
+}
+`;
+
+exports[`CreateWidgetSchema should match the validation result for valid data 1`] = `
+{
+  "errors": null,
+  "valid": true,
+}
+`;
+
+exports[`EditWidgetSchema should match the validation result for incorrect data - missing config 1`] = `
+{
+  "errors": [
+    {
+      "dataPath": "",
+      "keyword": "required",
+      "message": "should have required property 'config'",
+      "params": {
+        "missingProperty": "config",
+      },
+      "schemaPath": "#/required",
+    },
+  ],
+  "valid": false,
+}
+`;
+
+exports[`EditWidgetSchema should match the validation result for incorrect data - missing widgetProps 1`] = `
+{
+  "errors": [
+    {
+      "dataPath": ".config",
+      "keyword": "required",
+      "message": "should have required property '.widgetProps'",
+      "params": {
+        "missingProperty": ".widgetProps",
+      },
+      "schemaPath": "#/properties/config/required",
+    },
+  ],
+  "valid": false,
+}
+`;
+
+exports[`EditWidgetSchema should match the validation result for incorrect data 1`] = `
+{
+  "errors": [
+    {
+      "dataPath": "",
+      "keyword": "required",
+      "message": "should have required property 'id'",
+      "params": {
+        "missingProperty": "id",
+      },
+      "schemaPath": "#/required",
+    },
+  ],
+  "valid": false,
+}
+`;
+
+exports[`EditWidgetSchema should match the validation result for valid data 1`] = `
+{
+  "errors": null,
+  "valid": true,
+}
+`;

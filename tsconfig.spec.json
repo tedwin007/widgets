@@ -7,10 +7,13 @@
       "vitest/importMeta",
       "vite/client",
       "node",
-      "vitest"
-    ]
+      "vitest",
+      "jest"
+    ],
+    "allowSyntheticDefaultImports": true
   },
   "include": [
+    "jest.config.ts",
     "vite.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",

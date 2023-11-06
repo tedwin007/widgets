@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SchemasMap should match the snapshot of the createWidget schema 1`] = `
+{
+  "additionalProperties": false,
+  "properties": {
+    "config": {
+      "widgetProps": {
+        "additionalProperties": true,
+        "description": "This defines the widget's component props ( @Input )",
+        "type": [Function],
+      },
+    },
+    "version": {
+      "description": "Widget Config",
+      "type": "string",
+    },
+  },
+  "required": [
+    "config",
+  ],
+  "type": "object",
+}
+`;
+
+exports[`SchemasMap should match the snapshot of the editWidget schema 1`] = `
+{
+  "additionalProperties": false,
+  "optionalProperties": {
+    "data": {
+      "type": "object",
+    },
+  },
+  "properties": {
+    "config": {
+      "required": [
+        "widgetProps",
+      ],
+      "widgetProps": {
+        "additionalProperties": true,
+        "description": "This defines the widget's component props ( @Input )",
+        "type": [Function],
+      },
+    },
+    "id": {
+      "description": "Widget's ID",
+      "type": "string",
+    },
+    "version": {
+      "description": "Widget Config",
+      "type": "string",
+    },
+  },
+  "required": [
+    "config",
+    "version",
+    "id",
+  ],
+  "type": "object",
+}
+`;
