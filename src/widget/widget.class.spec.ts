@@ -45,7 +45,7 @@ describe('Widget', () => {
 
     it('should set data and update status to done', () => {
         jest.spyOn(SchemaValidator, 'createValidator').mockReturnValue({
-            verify: jest.fn().mockImplementation((input: any) => true)
+            verify: jest.fn().mockImplementation((): boolean => true)
         } as any);
         const widget = Widget.create(mockWidgetConfig, mockSchema);
         const mockData = {name: 'testName'};
