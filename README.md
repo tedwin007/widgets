@@ -18,13 +18,13 @@ this is a TypeScript library for managing the lifecycle of widgets including:
 ## Installation
 
 ```sh
-npm install @tw/widgets --save
+npm install widgets --save
 ```
 
 Or if you are using `yarn`:
 
 ```sh
-yarn add @tw/widgets
+yarn add @tedwin007/widgets
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ yarn add @tw/widgets
 Import `WidgetManager` and `Widget` into your project:
 
 ```typescript
-import {WidgetManager, Widget} from '@tw/widgets';
+import {WidgetManager, Widget} from '@tedwin007/widgets';
 ```
 
 ### Instantiate & validate a widget
@@ -89,3 +89,13 @@ For detailed API usage, please refer to the inline documentation within the code
 - Clone the repository.
 - Install dependencies using `npm install`.
 - Build the project using `npm run build`.
+
+## Publish
+```shell
+npm publish --access public
+```
+#### This will automatically do the following before publishing the package to npm repository:
+- lint & fix code-style
+- run tests 
+- bump version 
+- build & pack
