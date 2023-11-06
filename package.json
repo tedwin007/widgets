@@ -1,6 +1,6 @@
 {
   "name": "@tedwin007/widgets",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "license": "MIT",
   "scripts": {
     "lint:fix": "nx run widgets:lint --parallel --skip-nx-cache --fix --reportUnusedDisableDirectives=error",
