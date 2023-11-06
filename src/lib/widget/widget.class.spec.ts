@@ -112,7 +112,7 @@ describe('Widget', () => {
         }, mockSchema);
         const mockData = {name: 'testName'};
 
-        expect(() => widget.setData(mockData)).toThrow('Error: widgetProps was not defined in the widget\'s configuration');
+        expect(() => widget.setData(mockData)).toThrow('widgetProps was not defined in the widget\'s configuration');
     });
 
     it('should throw an error if prop type does not match widgetProps type definition', () => {
@@ -121,7 +121,7 @@ describe('Widget', () => {
         } as any);
         const widget = Widget.create(mockWidgetConfig, mockSchema);
         const mockInvalidData = {name: 12345};
-        expect(() => widget.setData(mockInvalidData)).toThrow(`Error: prop type 12345 does not match the widgetProps type definition (string)`);
+        expect(() => widget.setData(mockInvalidData)).toThrow(`prop type 12345 does not match the widgetProps type definition (string)`);
     });
 
 });

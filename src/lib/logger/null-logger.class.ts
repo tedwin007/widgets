@@ -11,7 +11,7 @@ export class NullLogger implements CustomLogger {
         return null
     }
 
-    warn(...args: (string | Error)[]): void {
+    warn(...args: (string | Error)[]): null {
         return null
     }
 

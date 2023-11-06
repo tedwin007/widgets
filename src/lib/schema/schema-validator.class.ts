@@ -16,7 +16,7 @@ export class SchemaValidator {
         return {schema, verify};
     };
 
-    private static verify = (validate: Ajv.ValidateFunction) => (data) => {
+    private static verify = (validate: Ajv.ValidateFunction) => (data:any) => {
         const isValid = validate(data);
         if (isValid) return data;
         throw new Error(

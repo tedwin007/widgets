@@ -55,8 +55,10 @@ export class Widget<T = any> implements BaseWidget<T> {
             SchemaValidator.createValidator(schema).verify(widgetConf);
             return new Widget(widgetConf);
         } catch (err) {
-            err.message += `enriched: source->Widget.create | data: widget=${JSON.stringify(widgetConf)} | schema = ${schema}`;
-            throw new Error(err);
+            if (err instanceof Error) {
+                err.message += `enriched: source->Widget.create | data: widget=${JSON.stringify(widgetConf)} | schema = ${schema}`;
+                throw err;
+            }
         }
     }
 
@@ -72,7 +74,7 @@ export class Widget<T = any> implements BaseWidget<T> {
             this.status = WidgetStatus.done;
         } catch (err) {
             this.status = WidgetStatus.failed;
-            throw new Error(err);
+            if (err instanceof Error) throw err;
         }
     }
 
