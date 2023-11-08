@@ -1,9 +1,9 @@
-import { CustomLogger } from "ajv";
-import { Widget } from "../widget/widget.class";
-import { NullLogger } from "../logger/null-logger.class";
-import { SchemasMap } from "../schema/constants/schem.map";
-import { BaseWidget, FromJsonResponse, ToJsonResult } from "../widget/interfaces/widget.interface";
-import { WidgetSchema } from "../schema/enums/schema-name.enum";
+import {CustomLogger} from "ajv";
+import {Widget} from "../widget/widget.class";
+import {NullLogger} from "../logger/null-logger.class";
+import {SchemasMap} from "../schema/constants/schem.map";
+import {BaseWidget, FromJsonResponse, ToJsonResult, UIWidget} from "../widget/interfaces/widget.interface";
+import {WidgetSchema} from "../schema/enums/schema-name.enum";
 
 /**
  * Manages widgets and provides methods for converting to/from JSON.
@@ -68,13 +68,13 @@ export class WidgetManager {
              * Attaches a render function to the Widget instance.
              * @param {HTMLElement} containerRef - The container element where the Widget will be rendered.
              * @param {any} ctx - The context for rendering.
-             * @returns {FromJsonResponse} The same FromJsonResponse object with the attached render function.
+             * @returns {Widget} Instance
              */
             return {
                 getInstance: () => uiWidget,
-                attachRender: function (containerRef: HTMLElement, ctx: any): FromJsonResponse {
-                    uiWidget.render = this.attachRender.bind(containerRef, ctx);
-                    return this;
+                attachRender: function (ctx: ThisType<any>, renderFunction: (element: HTMLElement) => void): UIWidget {
+                    uiWidget.render = renderFunction.bind(ctx);
+                    return this.getInstance();
                 }
             };
         } catch (err) {

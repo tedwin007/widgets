@@ -23,6 +23,6 @@ export interface UIWidget extends BaseWidget {
 }
 
 export interface FromJsonResponse {
-    attachRender: (containerRef: HTMLElement, ctx: any) => FromJsonResponse;
+    attachRender: (ctx: ThisType<any>, renderFunction: (element: HTMLElement) => void) => UIWidget;
     getInstance: () => UIWidget;
 }
