@@ -2,7 +2,6 @@ import {SchemaResult} from "./interfaces/schema-validator.interfaces";
 import * as Ajv from "ajv";
 import {ErrorObject} from "ajv";
 
-
 export class SchemaValidator {
     private static ERROR_TYPE = 'Widget Schema'
 

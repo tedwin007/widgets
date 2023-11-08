@@ -5,15 +5,19 @@ exports[`SchemasMap should match the snapshot of the createWidget schema 1`] = `
   "additionalProperties": false,
   "properties": {
     "config": {
-      "widgetProps": {
-        "additionalProperties": true,
-        "description": "This defines the widget's component props ( @Input )",
-        "type": [Function],
-      },
-    },
-    "version": {
+      "additionalProperties": true,
       "description": "Widget Config",
-      "type": "string",
+      "properties": {},
+      "type": "object",
+    },
+    "data": {
+      "$ref": "#/properties/widgetProps",
+    },
+    "widgetProps": {
+      "additionalProperties": true,
+      "description": "This defines the widget's component props ( @Input )",
+      "properties": {},
+      "type": "object",
     },
   },
   "required": [
@@ -26,35 +30,36 @@ exports[`SchemasMap should match the snapshot of the createWidget schema 1`] = `
 exports[`SchemasMap should match the snapshot of the editWidget schema 1`] = `
 {
   "additionalProperties": false,
-  "optionalProperties": {
-    "data": {
-      "type": "object",
-    },
-  },
   "properties": {
     "config": {
-      "required": [
-        "widgetProps",
-      ],
-      "widgetProps": {
-        "additionalProperties": true,
-        "description": "This defines the widget's component props ( @Input )",
-        "type": [Function],
-      },
+      "additionalProperties": true,
+      "description": "Widget Config",
+      "properties": {},
+      "type": "object",
+    },
+    "data": {
+      "$ref": "#/properties/widgetProps",
     },
     "id": {
       "description": "Widget's ID",
       "type": "string",
     },
     "version": {
-      "description": "Widget Config",
+      "description": "Widget's Version",
       "type": "string",
+    },
+    "widgetProps": {
+      "additionalProperties": true,
+      "description": "This defines the widget's component props ( @Input )",
+      "properties": {},
+      "type": "object",
     },
   },
   "required": [
     "config",
     "version",
     "id",
+    "widgetProps",
   ],
   "type": "object",
 }

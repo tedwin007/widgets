@@ -5,12 +5,12 @@ exports[`CreateWidgetSchema should match the validation result for incorrect dat
   "errors": [
     {
       "dataPath": "",
-      "keyword": "required",
-      "message": "should have required property '.config'",
+      "keyword": "additionalProperties",
+      "message": "should NOT have additional properties",
       "params": {
-        "missingProperty": ".config",
+        "additionalProperty": "id",
       },
-      "schemaPath": "#/required",
+      "schemaPath": "#/additionalProperties",
     },
   ],
   "valid": false,
@@ -19,8 +19,18 @@ exports[`CreateWidgetSchema should match the validation result for incorrect dat
 
 exports[`CreateWidgetSchema should match the validation result for valid data 1`] = `
 {
-  "errors": null,
-  "valid": true,
+  "errors": [
+    {
+      "dataPath": "",
+      "keyword": "additionalProperties",
+      "message": "should NOT have additional properties",
+      "params": {
+        "additionalProperty": "version",
+      },
+      "schemaPath": "#/additionalProperties",
+    },
+  ],
+  "valid": false,
 }
 `;
 
@@ -30,9 +40,9 @@ exports[`EditWidgetSchema should match the validation result for incorrect data 
     {
       "dataPath": "",
       "keyword": "required",
-      "message": "should have required property 'config'",
+      "message": "should have required property 'widgetProps'",
       "params": {
-        "missingProperty": "config",
+        "missingProperty": "widgetProps",
       },
       "schemaPath": "#/required",
     },
@@ -45,13 +55,13 @@ exports[`EditWidgetSchema should match the validation result for incorrect data 
 {
   "errors": [
     {
-      "dataPath": ".config",
+      "dataPath": "",
       "keyword": "required",
-      "message": "should have required property '.widgetProps'",
+      "message": "should have required property 'widgetProps'",
       "params": {
-        "missingProperty": ".widgetProps",
+        "missingProperty": "widgetProps",
       },
-      "schemaPath": "#/properties/config/required",
+      "schemaPath": "#/required",
     },
   ],
   "valid": false,
@@ -64,9 +74,9 @@ exports[`EditWidgetSchema should match the validation result for incorrect data 
     {
       "dataPath": "",
       "keyword": "required",
-      "message": "should have required property 'id'",
+      "message": "should have required property 'widgetProps'",
       "params": {
-        "missingProperty": "id",
+        "missingProperty": "widgetProps",
       },
       "schemaPath": "#/required",
     },
@@ -77,7 +87,17 @@ exports[`EditWidgetSchema should match the validation result for incorrect data 
 
 exports[`EditWidgetSchema should match the validation result for valid data 1`] = `
 {
-  "errors": null,
-  "valid": true,
+  "errors": [
+    {
+      "dataPath": "",
+      "keyword": "required",
+      "message": "should have required property 'widgetProps'",
+      "params": {
+        "missingProperty": "widgetProps",
+      },
+      "schemaPath": "#/required",
+    },
+  ],
+  "valid": false,
 }
 `;

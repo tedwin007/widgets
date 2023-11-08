@@ -1,9 +1,10 @@
 import {CustomLogger} from "ajv";
 import {Widget} from "../widget/widget.class";
 import {NullLogger} from "../logger/null-logger.class";
-import {SchemasMap} from "../schema/constants/schem.map";
-import {BaseWidget, FromJsonResponse, ToJsonResult, UIWidget} from "../widget/interfaces/widget.interface";
+import {SchemasMap} from "../schema/constants/schema.map";
+import {BaseWidget, ToJsonResult, UIWidget} from "../widget/interfaces/widget.interface";
 import {WidgetSchema} from "../schema/enums/schema-name.enum";
+import {FromJsonResponse} from "./interfaces/widget-manager.interface";
 
 /**
  * Manages widgets and provides methods for converting to/from JSON.
@@ -30,40 +31,39 @@ export class WidgetManager {
     /**
      * Converts a BaseWidget instance from JSON representation to a Widget.
      * @param {BaseWidget} widget - The BaseWidget instance to convert.
-     * @param {WidgetSchema} WidgetSchema - The schema name for validation.
+     * @param {WidgetSchema} widgetSchema - The schema name for validation.
      * @returns {FromJsonResponse} An object containing the Widget instance and attachRender method.
      */
     fromJson(
         widget: BaseWidget,
-        WidgetSchema: WidgetSchema.New
+        widgetSchema?: WidgetSchema.New
     ): FromJsonResponse;
 
     /**
      * Converts a BaseWidget instance from JSON representation to a Widget with custom validation schema.
      * @param {BaseWidget} widget - The BaseWidget instance to convert.
-     * @param {WidgetSchema} WidgetSchema - The schema name for validation.
+     * @param {WidgetSchema} widgetSchema - The schema name for validation.
      * @param {object} schema - The custom validation schema to use.
      * @returns {FromJsonResponse} An object containing the Widget instance and attachRender method.
      */
     fromJson(
         widget: BaseWidget,
-        WidgetSchema: WidgetSchema.custom,
+        widgetSchema: WidgetSchema.custom,
         schema: object
     ): FromJsonResponse;
 
     /**
      * Implementation of the fromJson method that performs the actual conversion.
      * @param {BaseWidget} widget - The BaseWidget instance to convert.
-     * @param {WidgetSchema} WidgetSchema - The schema name for validation.
+     * @param {WidgetSchema} widgetSchema - The schema name for validation.
      * @param {object} [schema] - Optional validation schema.
      * @returns {FromJsonResponse} An object containing the Widget instance and attachRender method.
      */
-    fromJson(widget: BaseWidget, WidgetSchema: WidgetSchema, schema?: object): FromJsonResponse {
+    fromJson(widget: BaseWidget, widgetSchema: WidgetSchema = WidgetSchema.New, schema?: object): FromJsonResponse {
         try {
-            const validationSchema = schema || SchemasMap.get(WidgetSchema);
+            const validationSchema = schema || SchemasMap.get(widgetSchema);
             if (!validationSchema) throw new Error('unknown validation schema');
             const uiWidget: Widget = Widget.create(widget, validationSchema);
-
             /**
              * Attaches a render function to the Widget instance.
              * @param {HTMLElement} containerRef - The container element where the Widget will be rendered.
@@ -74,7 +74,7 @@ export class WidgetManager {
                 getInstance: () => uiWidget,
                 attachRender: function (ctx: ThisType<any>, renderFunction: (element: HTMLElement) => void): UIWidget {
                     uiWidget.render = renderFunction.bind(ctx);
-                    return this.getInstance();
+                    return uiWidget
                 }
             };
         } catch (err) {

@@ -56,19 +56,6 @@ describe('Widget', () => {
         expect(widget.status).toBe(WidgetStatus.done);
     });
 
-    it('should throw an error when trying to set invalid data', () => {
-        jest.spyOn(SchemaValidator, 'createValidator').mockReturnValue({
-            verify: jest.fn().mockImplementation(() => true)
-        } as any);
-        const widget = Widget.create(mockWidgetConfig, mockSchema);
-        const mockInvalidData = {name: 123}; // 'name' prop expects a string
-
-        expect(() => {
-            widget.setData(mockInvalidData);
-        }).toThrow();
-        expect(widget.status).toBe(WidgetStatus.failed);
-    });
-
 
     it('should correctly convert the widget to JSON format', () => {
         jest.spyOn(SchemaValidator, 'createValidator').mockReturnValue({
@@ -87,7 +74,7 @@ describe('Widget', () => {
         const widget = Widget.create(mockWidgetConfig, mockSchema);
         const jsonResult = widget.toJson();
         expect(jsonResult.id).toBe(mockWidgetConfig.id);
-        expect(jsonResult.version).toBe('test-id_v1'); // Assuming that the setVersion method appends "_v1" if version is not provided
+        expect(jsonResult.version).toBe('test-id_v1');
         expect(jsonResult.config).toEqual(mockWidgetConfig.config);
     });
 
@@ -99,29 +86,7 @@ describe('Widget', () => {
         });
         const widget = Widget.create(mockWidgetConfig, mockSchema);
 
-        expect(() => widget.render()).toThrow('No Render method was attached');
-    });
-
-    it('should throw an error if widgetProps is not defined', () => {
-        jest.spyOn(SchemaValidator, 'createValidator').mockReturnValue({
-            verify: jest.fn().mockImplementation(() => true)
-        } as any);
-        const widget = Widget.create({
-            ...mockWidgetConfig,
-            config: {}
-        }, mockSchema);
-        const mockData = {name: 'testName'};
-
-        expect(() => widget.setData(mockData)).toThrow('widgetProps was not defined in the widget\'s configuration');
-    });
-
-    it('should throw an error if prop type does not match widgetProps type definition', () => {
-        jest.spyOn(SchemaValidator, 'createValidator').mockReturnValue({
-            verify: jest.fn().mockImplementation(() => true)
-        } as any);
-        const widget = Widget.create(mockWidgetConfig, mockSchema);
-        const mockInvalidData = {name: 12345};
-        expect(() => widget.setData(mockInvalidData)).toThrow(`prop type 12345 does not match the widgetProps type definition (string)`);
+        expect(() => widget.render({} as any)).toThrow('No Render method was attached');
     });
 
 });

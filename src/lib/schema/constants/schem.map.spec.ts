@@ -1,4 +1,4 @@
-import {SchemasMap} from "./schem.map";
+import {SchemasMap} from "./schema.map";
 import {WidgetSchema} from "../enums/schema-name.enum";
 
 describe('SchemasMap', () => {
