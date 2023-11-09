@@ -9,7 +9,7 @@ export type RenderFunction<T = any> = (element: HTMLElement) => T;
 
 export interface BaseWidget<Data = any, Config = any> {
     widgetProps: Partial<Data>
-    id: string;
+    id?: string;
     version?: string;
     config: Config,
     data?: Data,

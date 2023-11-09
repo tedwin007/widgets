@@ -1,9 +1,3 @@
-### To-Do:
-1. WidgetProps should be in the same level as the config
-2. Id and data, should now be mandatory on WidgetSchema.New schema
-3. SchemaValidation throws [object,object] - need to use JSON.stringify()
-4. AttachRender is incorrect, I need to fix it
-
 # Widget Manager
 
 this is a TypeScript library for managing the lifecycle of widgets including:
@@ -24,7 +18,7 @@ this is a TypeScript library for managing the lifecycle of widgets including:
 ## Installation
 
 ```sh
-npm install widgets --save
+npm install @tedwin007/widgets --save
 ```
 
 Or if you are using `yarn`:
@@ -46,15 +40,19 @@ import {WidgetManager, Widget} from '@tedwin007/widgets';
 ```typescript
 const widgetManager = new WidgetManager();
 const widgetJson = {
-    id: 'test-id',
-    version: 'v1',
+    id: 'widget-123',
+    version: '1.0.0',
     config: {
-        widgetProps: {
-            name: {
-                type: 'string'
-            }
-        }
-    }
+        theme: 'light',
+        layout: 'fixed'
+    },
+    data: {
+        title: 'My Widget',
+        content: 'This is my widget content'
+    },
+    widgetProps: {
+        title: 'My Partial Widget'
+    },
 };
 const myWidget = widgetManager.fromJson(widgetJson); 
 ```
@@ -62,10 +60,10 @@ const myWidget = widgetManager.fromJson(widgetJson);
 ### Validating and Rendering a Widget
 
 ```typescript
-widgetManager
-    .fromJson(widgetJson)
-    .attachRender(document.getElementById('widget-container'), context)
-    .render();
+this.widgetManger
+    .fromJson(this.rawWidget, WidgetSchema.Existing)
+    .attachRender(this, (element) => element.innerHTML = `<h1>Widget Content</h1>`)
+    .render()
 ```
 
 ### Serializing a Widget to JSON
