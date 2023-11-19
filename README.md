@@ -1,7 +1,12 @@
 # Widget Manager
 
-this is a TypeScript library for managing the lifecycle of widgets including:
+Please check out the playground:
+[Playground](https://main--friendly-sunburst-260760.netlify.app/)
+![Site](src/lib/assets/site.png?raw=true "Site")
+To get more insight about creating new widgets, schema validation and process
+Or see some basic code implementation in the playground's github repository [WIP]
 
+This is a TypeScript library for managing the lifecycle of widgets including:
 - Creation
 - Validation
 - Serialization
