@@ -1,116 +1,112 @@
-# Widget Manager
+# @tedwin007/widgets
 
-Please check out the playground:
-[Playground](https://main--friendly-sunburst-260760.netlify.app/)
-![Site](src/lib/assets/site.png?raw=true "Site")
-To get more insight about creating new widgets, schema validation and process
-Or see some basic code implementation in the playground's github repository [WIP]
+A TypeScript library for managing the full lifecycle of UI widgets — creation, schema validation, rendering, and serialization — with a small, chainable API.
 
-This is a TypeScript library for managing the lifecycle of widgets including:
-- Creation
-- Validation
-- Serialization
-- Rendering
+**[Live playground →](https://main--friendly-sunburst-260760.netlify.app/)**
+
+![Playground](https://github.com/tedwin007/widgets/raw/staging/src/lib/assets/site.png?raw=true)
+
+---
+
+## Why
+
+Frontends that render dynamic, server-driven UI (dashboards, no-code tools, embedded widgets) tend to grow the same tangle: JSON comes in from somewhere, it needs to be validated, instantiated into a runtime object, wired to a DOM node, and later serialized back out. Each team reinvents this plumbing, usually inconsistently.
+
+`@tedwin007/widgets` is a small, opinionated core for that lifecycle. It gives you a `WidgetManager`, a `Widget` runtime object, and a chainable API that keeps validation, rendering, and serialization in one place.
 
 ## Features
 
-- Create widget instances from JSON with validation.
-- Serialize widget instances to JSON.
-- Attach render methods to widget instances for UI rendering.
-- Support for custom schemas during widget creation.
-- Built-in error handling and logging.
+- Instantiate widgets from JSON with schema validation
+- Serialize widget instances back to JSON
+- Attach render methods for DOM output
+- Bring-your-own schema support
+- Built-in error handling and logging
 
-## Installation
+## Install
 
-```sh
-npm install @tedwin007/widgets --save
-```
-
-Or if you are using `yarn`:
-
-```sh
+```bash
+npm install @tedwin007/widgets
+# or
 yarn add @tedwin007/widgets
 ```
 
 ## Usage
 
-Import `WidgetManager` and `Widget` into your project:
+```ts
+import { WidgetManager, Widget, WidgetSchema } from '@tedwin007/widgets';
 
-```typescript
-import {WidgetManager, Widget} from '@tedwin007/widgets';
-```
-
-### Instantiate & validate a widget
-
-```typescript
 const widgetManager = new WidgetManager();
+
 const widgetJson = {
-    id: 'widget-123',
-    version: '1.0.0',
-    config: {
-        theme: 'light',
-        layout: 'fixed'
-    },
-    data: {
-        title: 'My Widget',
-        content: 'This is my widget content'
-    },
-    widgetProps: {
-        title: 'My Partial Widget'
-    },
+  id: 'widget-123',
+  version: '1.0.0',
+  config: { theme: 'light', layout: 'fixed' },
+  data: { title: 'My Widget', content: 'This is my widget content' },
+  widgetProps: { title: 'My Partial Widget' },
 };
-const myWidget = widgetManager.fromJson(widgetJson); 
 ```
 
-### Validating and Rendering a Widget
+### Validate and render
 
-```typescript
-this.widgetManger
-    .fromJson(this.rawWidget, WidgetSchema.Existing)
-    .attachRender(this, (element) => element.innerHTML = `<h1>Widget Content</h1>`)
-    .render()
+```ts
+widgetManager
+  .fromJson(widgetJson, WidgetSchema.Existing)
+  .attachRender(this, (element) => {
+    element.innerHTML = `<h1>Widget Content</h1>`;
+  })
+  .render();
 ```
 
-### Serializing a Widget to JSON
+### Serialize back to JSON
 
-```typescript
-const widgetToJson = widgetManager.toJson(myWidget);
-console.log(widgetToJson);
+```ts
+const serialized = widgetManager.toJson(myWidget);
 ```
 
 ## API
 
-### WidgetManager
+### `WidgetManager`
 
-- ```fromJson(widget: BaseWidget, schema: WidgetSchema, customSchema?: object): FromJsonResponse```
-- `toJson(widget: Widget): ToJsonResult`
+| Method | Signature |
+| --- | --- |
+| `fromJson` | `(widget: BaseWidget, schema: WidgetSchema, customSchema?: object) => FromJsonResponse` |
+| `toJson` | `(widget: Widget) => ToJsonResult` |
 
 ### `Widget`
 
-- `setData(data: T): void`
-- `toJson(): ToJsonResult`
-- `render(): void`
+| Method | Signature |
+| --- | --- |
+| `setData` | `(data: T) => void` |
+| `toJson` | `() => ToJsonResult` |
+| `render` | `() => void` |
 
-For detailed API usage, please refer to the inline documentation within the code.
+See inline JSDoc in the source for details.
 
 ## Development
 
-- Clone the repository.
-- Install dependencies using `npm install`.
-- Build the project using `npm run build`.
+```bash
+git clone https://github.com/tedwin007/widgets.git
+cd widgets
+npm install
+npm run build
+npm test
+```
 
-## Publish
+Built with Nx, Vite, and Jest. Linting via ESLint + Prettier.
 
-```shell
+## Publishing
+
+```bash
 npm publish --access public
 ```
 
-#### This will automatically do the following before publishing the package to npm repository:
+Before publishing, the pipeline automatically:
 
-- lint & fix code-style
-- run tests
-- bump version
-- build & pack
+1. Lints and auto-fixes code style
+2. Runs the full test suite
+3. Bumps the package version
+4. Builds and packs the library
 
+## License
 
-
+MIT
